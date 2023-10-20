@@ -1,30 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ProductForm from './components/ProductForm';
+import ProductList from './components/ProductList';
+import Navbar from './components/Navbar';
+import Inicio from './components/Inicio';
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [lastId, setLastId] = useState(0);
 
-  useEffect(() => {
-    axios.get('https://localhost:7051/ProductAll')
-      .then(response => {
-        setProducts(response.data);
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-  }, []);
+  // Función para agregar un nuevo producto a la lista
+  const addProduct = (newProduct) => {
+    const newId = lastId + 1;
+    newProduct.id = newId;
+    setLastId(newId);
+    setProducts([...products, newProduct]);
+  };
 
   return (
-    <div>
-      <h1>Lista de Productos</h1>
-      <ul>
-        {products.map(product => (
-          <li key={product.id}>
-            Nombre: {product.name}, Precio: {product.price}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Router>
+      <div>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Inicio />} />
+          <Route path="/productos" element={<ProductForm onProductAdd={addProduct} />} />
+          <Route path="/inventario" element={<ProductList products={products} />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
