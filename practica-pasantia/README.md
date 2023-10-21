@@ -11,7 +11,7 @@ Este es un proyecto en el cual podremos agregar, editar, eliminar y mostrar prod
 
 ## Instalación
 
-Debes terner instalado .NET
+Debes tener instalado .NET
 
 En tu Terminal colocar: 
 
