@@ -14,17 +14,25 @@ Este es un proyecto en el cual podremos agregar, editar, eliminar y mostrar prod
 Debes terner instalado .NET
 
 En tu Terminal colocar: 
+
 git clone https://github.com/EdwilleBaez/practica-api.git
+
 npm install
 
 ## Proceso
 Abrir la terminal en tu editor de codigo
+
 cd ./api/
+
 cd ./Api-PruebaFront
+
 dotnet watch run
 
+
 Abrir otra Terminal
+
 cd ./practica-pasantia/
+
 npm run dev
 
 ### Construido con:
