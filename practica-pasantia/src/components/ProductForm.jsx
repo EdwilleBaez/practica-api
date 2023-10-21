@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-
-function ProductForm({ onProductAdd }) {
+import axios from 'axios';
+const  ProductForm = ({model, onSubmit} ) => {
   
   const [product, setProduct] = useState({
+  
     name: '',
     description: '', 
     category: '',    
@@ -17,14 +18,12 @@ function ProductForm({ onProductAdd }) {
       [name]: value,
     });
   };
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    const numericPrice = parseFloat(product.price);
-    if (!isNaN(numericPrice)) {
-      const productWithNumericPrice = { ...product, price: numericPrice };
-      onProductAdd(productWithNumericPrice);
-      // Limpiar el formulario después de agregar el producto
+    axios.post('https://localhost:7051/Product', product)
+    .then(response =>  {
+      console.log(response);
+      alert('Producto Agregado')
       setProduct({
         name: '',
         description: '',
@@ -32,9 +31,13 @@ function ProductForm({ onProductAdd }) {
         stock: 0,
         price: 0,
       });
-    } else {
-      console.error('El precio no es un número válido.');
     }
+    )
+    .catch(err => {
+      console.log(err)
+      alert('Error al agregar el produto')
+    } )
+ 
   };
 
   return (
@@ -108,3 +111,4 @@ function ProductForm({ onProductAdd }) {
 }
 
 export default ProductForm;
+
