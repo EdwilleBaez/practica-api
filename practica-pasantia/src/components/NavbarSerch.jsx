@@ -11,8 +11,6 @@ const NavbarSerch = ({ onSearch }) => {
     <>
       <div className="container mt-4">
         <div className="row justify-content-between">
-        <i class="bi bi-search"></i>
-
             <div className="col-3">
                 <Link to="/productos" class="btn btn-primary mb-4" role="button">Agregar producto</Link>
             </div>

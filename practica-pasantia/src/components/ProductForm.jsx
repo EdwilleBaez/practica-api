@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
+
 const  ProductForm = ({model, onSubmit} ) => {
   
   const [product, setProduct] = useState({
@@ -102,7 +105,10 @@ const  ProductForm = ({model, onSubmit} ) => {
                 required
             />
         </div>
-        <button type="submit" className="btn btn-primary">Agregar Producto</button>
+        <div className='d-flex'>
+          <Link to="/inventario" class="btn btn-outline-secondary mb-4 px-4 me-4" role="button">Cancelar</Link>
+          <button type="submit" className="btn btn-primary mb-4 px-4">Agregar Producto</button>
+        </div>
       </form>
     </div>
   </>
